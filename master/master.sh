@@ -5,6 +5,9 @@
 echo "Configuring Job Manager on this node"
 #sed -i -e "s/%jobmanager%/`hostname -i`/g" /usr/local/flink/conf/flink-conf.yaml
 sed -i -e "s/jobmanager.rpc.address: localhost/jobmanager.rpc.address: `hostname -i`/g" /usr/local/flink/conf/flink-conf.yaml
+sed -i -e "s/jobmanager.bind-host: localhost/jobmanager.bind-host: 0.0.0.0/g" /usr/local/flink/conf/flink-conf.yaml
+sed -i -e "s/rest.address: localhost/rest.address: `hostname -i`/g" /usr/local/flink/conf/flink-conf.yaml
+sed -i -e "s/rest.bind-address: localhost/rest.bind-address: 0.0.0.0/g" /usr/local/flink/conf/flink-conf.yaml
 echo "blob.server.port: 6124" >> /usr/local/flink/conf/flink-conf.yaml
 echo "query.server.port: 6125" >> /usr/local/flink/conf/flink-conf.yaml
 

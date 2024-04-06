@@ -1,8 +1,8 @@
-FROM bde2020/hadoop-base:2.0.0-hadoop3.2.1-java8
+FROM brijeshdhaker/hadoop-base:3.3.4
 
 LABEL MAINTAINER="Gezim Sejdiu <g.sejdiu@gmail.com>"
 
-ENV FLINK_VERSION=1.14.5
+ENV FLINK_VERSION=1.17.2
 ENV HADOOP_VERSION=32
 ENV SCALA_VERSION=2.12
 
@@ -30,12 +30,12 @@ ENV FLINK_HOME /usr/local/flink
 ENV PATH $PATH:$FLINK_HOME/bin
 
 #add passless key to ssh
-RUN ssh-keygen -f ~/.ssh/id_rsa -t rsa -N ''
-RUN cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/*
+#RUN ssh-keygen -f ~/.ssh/id_rsa -t rsa -N ''
+#RUN cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/*
 
 # add netcat for SERVICE_PRECONDITION checks
-RUN apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends netcat
+#RUN apt-get update \
+#    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends netcat
 
 COPY entrypoint.sh /
 
